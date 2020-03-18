@@ -1,0 +1,26 @@
+---
+title: "Untitled"
+author: '410773004'
+date: "2020/3/18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R package
+
+```{r}
+library(googlesheets4)
+```
+
+## create project
+```{r}
+a <- 2 
+a = 2 # <-跟=同義
+```
+
+```{r}
+a
+```
