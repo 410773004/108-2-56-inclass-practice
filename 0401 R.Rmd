@@ -154,9 +154,13 @@ print(commit)
 
 
 ```{r}
-"小明的成績"=list(list("108_1"=list(list("Subject"="個體經濟學","Teachername"="Alice","Score"=85),
-                               list("Subject"="總體經濟學","Teachername"="Mark","Score"=73))),
-             list("108_2"=list(list("subject"="作業研究","Teachername"="Alice","score"=90))))
+"小明的成績"=list(
+  "108_1"=list(
+     list("Subject"="個體經濟學","Teachername"="Alice","Score"=85),
+     list("Subject"="總體經濟學","Teachername"="Mark","Score"=73)),
+  
+  "108_2"=list(
+     list("subject"="作業研究","Teachername"="Alice","score"=90)))
 
 print(`小明的成績`)
 ```
