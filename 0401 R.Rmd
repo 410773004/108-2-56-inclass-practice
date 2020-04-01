@@ -1,0 +1,192 @@
+---
+title: "Untitled"
+author: '410773004'
+date: "2020/3/18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R package
+
+```{r}
+library(googlesheets4)
+```
+
+## create project
+```{r}
+a <- 2 
+a = 2 # <-跟=同義
+```
+
+```{r}
+a
+```
+
+```{r}
+'我的年紀' = 20
+```
+
+```{r}
+mean(c(1,2,3))  # 平均數
+seq(from=1,to=10,by=3) #數列，參數可換位置
+seq(1,10,3) #若參數照順序可省略
+```
+
+
+```{r}
+x=5
+str(x) #str()檢視變數型態
+```
+
+```{r}
+library(bit64)
+print(2^50,digits=20)
+print(2^50+1,digits=20)
+
+print(2^53,digits=20)
+print(2^53,digits=10)
+print(as.integer64(2)^53+1,digits=21)
+```
+
+```{r}
+a=180
+`我的身高`<-a
+`我的身高`
+b=60
+`我的體重`<-b
+`我的身高`+`我的體重`
+```
+
+```{r}
+x=5
+y=c(2,5)
+z=c(2,x)
+```
+
+```{r}
+x=c(1,5)
+y=c(2,3)
+z=c(x,y)
+m=c(1,5,2,3)
+n=c(c(1,5),c(2,3))
+```
+
+```{r}
+x=c(1,5)
+y=c(2,3)
+z=c()
+m=c(x,y)
+n=c(z,x)
+```
+
+
+```{r}
+library(lubridate)
+```
+
+
+
+```{r}
+vectorExample=c(2,6,7)
+listExample=list(2,6,7)
+
+print(vectorExample)
+print(listExample)
+```
+
+```{r}
+c("2020-03-31T13:40:55Z",
+  "一芳",
+  "2",
+  "水果茶")
+
+
+#若用list儲存
+library(lubridate)
+list(ymd_hms("2020-03-31T13:40:55Z"),#Date/Time
+     "一芳",#Character
+     2,#Numereic
+     "水果茶"#Character)
+    )
+print('小明交易1')
+```
+
+```{r}
+list(
+  c("108學年第1學期","高級會計學","高等統計學"),
+  c("108學年第2學期","食在拉丁美洲")
+ )
+`小明108課表` <- list(
+  list("108學年第1學期","高級會計學","高等統計學"),
+  list("108學年第2學期","食在拉丁美洲")
+ )
+
+
+list(
+  c("108學年第1學期","高級會計學","高等統計學"),
+  c("108學年第2學期","食在拉丁美洲")
+ )
+
+`小明108課表` <- list(
+  `上學期`=list(`semester`=c("108-1"),`courses`=c("高級會計學","高等統計學")),
+  `下學期`=list(`semester`=c("108-2"),`courses`=c("食在拉丁美洲"))
+ )
+print(`小明108課表`)
+
+```
+
+```{r}
+commit=list(
+  author=list("名字"="Martin老師",
+                "信箱"="mtlin@gm.ntpu.edu.tw",
+                "時間"=ymd_hms("2020-03-25T07:17:40")),
+  `committer`=list("名字"="emilyluckey",
+                   "信箱"="emily007@gmail.com",
+                   "時間"=ymd_hms("2020-03-26T08:18:40"))  ,
+  `message`="update"
+)
+print(commit)
+
+```
+
+
+```{r}
+"小明的成績"=
+
+
+
+```
+
+
+
+jfgjfgjfxjxjf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
