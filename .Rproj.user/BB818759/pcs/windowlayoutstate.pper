@@ -2,11 +2,7 @@
     "left" : {
         "panelheight" : 938,
         "splitterpos" : 390,
-<<<<<<< HEAD
-        "topwindowstate" : "HIDE",
-=======
         "topwindowstate" : "MAXIMIZE",
->>>>>>> 17bf0054599e1ff764d175f8dfee1c0c806d12c5
         "windowheight" : 976
     },
     "right" : {
