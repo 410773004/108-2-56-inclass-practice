@@ -37,7 +37,7 @@ seq(1,10,3) #若參數照順序可省略
 
 
 ```{r}
-x=5
+x=5L
 str(x) #str()檢視變數型態
 ```
 
@@ -171,7 +171,50 @@ print(`小明的成績`)
 print(`0331~0401氣象`)
 ```
 
+```{r}
+majors10_factor <- factor(
+  c('經濟學系','社會學系','社會學系','經濟學系','經濟學系',
+    '社會學系','經濟學系','經濟學系','經濟學系','社會學系')
+)
 
+typeof(majors10_factor)
+class(majors10_factor)
+
+levels
+print(majors10_factor)
+```
+
+##class/type conversion
+```{r}
+stringinteger=c("1","2","-11")
+class(stringinteger) #字串無法進行運算
+# stringinteger+2
+x=as.numeric(stringinteger)
+x+2
+```
+```{r}
+studentid=c(410773004,410773003)
+studentid2=as.character(studentid)
+print(studentid2)
+```
+
+```{r}
+library(lubridate)
+TPEtime=ymd_hms("2020-03-18 13:52:40",tz="Asia/Taipei") #台北時間
+class(TPEtime)
+typeof(TPEtime)
+```
+
+```{r}
+library(lubridate)
+Lisbontime=ymd_hms("2020-03-18 05:52:40",tz="Europe/Lisbon") #葡萄牙時間
+
+```
+
+```{r}
+with_tz(TPEtime,tzone="UTC")
+with_tz(Lisbontime,tzone="UTC")
+```
 
 
 
