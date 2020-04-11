@@ -231,6 +231,65 @@ vectorExample
 vectorExample[c(T,T,F)] #T=要留資料,F=不要資料
 ```
 
+```{r}
+library(jsonlite)
+fromJSON("https://www.dropbox.com/s/qnm9bnz7vccrvcz/taipeiNightMarkets.json?dl=1", simplifyDataFrame = F) -> taipeiNightMarkets
+names(taipeiNightMarkets)
+length(taipeiNightMarkets)
+taipeiNightMarkets[c(T,F,T,T,F,
+                     F,T,T,T,F,
+                     T,T,T,F)]->selectmarkets
+selectmarkets
+```
+
+
+```{r}
+selectmarkets=rep(F,14)
+selectmarkets
+selectmarkets[c(1,5,10,14)]=T
+selectmarkets
+```
+
+```{r}
+str(listExample,max.level=3)
+
+get1=listExample[["學期"]] #[[]]=' 將值取出
+get2=listExample["學期"] #[]=只留下
+
+```
+```{r}
+str(get1,max.level=1)
+str(get2,max.level = 3)
+```
+
+```{r}
+numVector <- c(2,3,6,-1,4,2,6)
+select1 <- numVector[c(1,4)]; select1
+select2 <- select1[[1]]; select2
+
+# 相當於
+numVector[c(1,4)][[1]]
+```
+
+```{r}
+select1 <- numVector[c(T,T,F,T,F,F,T)]; select1
+select2 <- select1[c(1,4)]; select2
+
+# 相當於
+numVector[c(T,T,F,T,F,F,T)][c(1,4)]
+
+```
+
+```{r}
+majors <- c("經濟學系","經濟學系","社會學系","社工系","經濟學系")
+names <- c("小英", "小美", "大雄","阿華", "阿尼")
+gender <- c("F","F","M","F","M")
+
+econOnly=c(T,T,F,F,T)
+names[econOnly]
+gender[econOnly]
+names[econOnly][c(T,T,F)]
+```
 
 
 
