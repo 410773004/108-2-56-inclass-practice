@@ -1,0 +1,1126 @@
+---
+title: "Untitled"
+author: '410773004'
+date: "2020/3/18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R package
+
+```{r}
+library(googlesheets4)
+```
+
+## create project
+```{r}
+a <- 2 
+a = 2 # <-跟=同義
+```
+
+```{r}
+a
+```
+
+```{r}
+'我的年紀' = 20
+```
+
+```{r}
+mean(c(1,2,3))  # 平均數
+seq(from=1,to=10,by=3) #數列，參數可換位置
+seq(1,10,3) #若參數照順序可省略
+```
+
+
+```{r}
+x=5
+str(x) #str()檢視變數型態
+```
+
+```{r}
+library(bit64)
+print(2^50,digits=20)
+print(2^50+1,digits=20)
+
+print(2^53,digits=20)
+print(2^53,digits=10)
+print(as.integer64(2)^53+1,digits=21)
+```
+
+```{r}
+a=180
+`我的身高`<-a
+`我的身高`
+b=60
+`我的體重`<-b
+`我的身高`+`我的體重`
+```
+
+```{r}
+x=5
+y=c(2,5)
+z=c(2,x)
+```
+
+```{r}
+x=c(1,5)
+y=c(2,3)
+z=c(x,y)
+m=c(1,5,2,3)
+n=c(c(1,5),c(2,3))
+```
+
+```{r}
+x=c(1,5)
+y=c(2,3)
+z=c()
+m=c(x,y)
+n=c(z,x)
+```
+
+
+```{r}
+library(lubridate)
+```
+
+
+
+```{r}
+vectorExample=c(2,6,7)
+listExample=list(2,6,7)
+
+print(vectorExample)
+print(listExample)
+```
+
+```{r}
+c("2020-03-31T13:40:55Z",
+  "一芳",
+  "2",
+  "水果茶")
+
+
+#若用list儲存
+library(lubridate)
+list(ymd_hms("2020-03-31T13:40:55Z"),#Date/Time
+     "一芳",#Character
+     2,#Numereic
+     "水果茶"#Character)
+    )
+print('小明交易1')
+```
+
+```{r}
+list(
+  c("108學年第1學期","高級會計學","高等統計學"),
+  c("108學年第2學期","食在拉丁美洲")
+ )
+`小明108課表` <- list(
+  list("108學年第1學期","高級會計學","高等統計學"),
+  list("108學年第2學期","食在拉丁美洲")
+ )
+
+
+list(
+  c("108學年第1學期","高級會計學","高等統計學"),
+  c("108學年第2學期","食在拉丁美洲")
+ )
+
+`小明108課表` <- list(
+  `上學期`=list(`semester`=c("108-1"),`courses`=c("高級會計學","高等統計學")),
+  `下學期`=list(`semester`=c("108-2"),`courses`=c("食在拉丁美洲"))
+ )
+print(`小明108課表`)
+
+```
+
+```{r}
+commit=list(
+  author=list("名字"="Martin老師",
+                "信箱"="mtlin@gm.ntpu.edu.tw",
+                "時間"=ymd_hms("2020-03-25T07:17:40")),
+  `committer`=list("名字"="emilyluckey",
+                   "信箱"="emily007@gmail.com",
+                   "時間"=ymd_hms("2020-03-26T08:18:40"))  ,
+  `message`="update"
+)
+print(commit)
+
+```
+
+```{r}
+vectorExample <- c("小明","小英","大雄")
+
+# 有多少位置可選：
+length(vectorExample)
+
+vectorExample[[1]]
+```
+
+```{r}
+listExample <- 
+  list(
+    student="小明",
+    `學期`=list(
+      `108-1`=list(
+        list(
+          name="個體經濟學",
+          teacher="Alice",
+          grade=85
+        )
+      ),
+      `108-2`=list(
+        list(
+          name="總體經濟學",
+          teacher="Mark",
+          grade=78
+        )
+      )
+    )
+  )
+length(listExample)
+listExample[[1]]
+listExample[[2]]
+```
+
+```{r}
+library(jsonlite)
+fromJSON("https://data.tainan.gov.tw/dataset/4cd9345a-04bf-4328-a97d-314ff78b4763/resource/afc025fc-1ef4-447c-b785-a680391d0ca1/download/tnsport2.json", simplifyDataFrame = F) -> tainanSportsMap
+length(tainanSportsMap)
+tainanSportsMap[[1]]
+tainanSportsMap[[1076]]
+```
+
+```{r}
+names(listExample)
+listExample$student
+listExample$`學期`
+listExample$name
+listExample[["student"]]
+```
+
+```{r}
+fromJSON("http://data.ntpc.gov.tw/api/v1/rest/datastore/382000000A-000157-002",
+         simplifyDataFrame = F)->newTaipeiCityVaccine
+newTaipeiCityVaccine
+str(newTaipeiCityVaccine)
+length(newTaipeiCityVaccine)
+str(newTaipeiCityVaccine$success)
+str(newTaipeiCityVaccine[[2]],max.level=1)
+
+```
+
+```{r}
+vectorExample
+vectorExample[c(1,3)]
+vectorExample[c(3,1,2)]
+```
+
+```{r}
+listExample
+listExample[c(1,2)]
+
+```
+
+```{r}
+vectorExample
+vectorExample[c(T,T,F)] #T=要留資料,F=不要資料
+```
+
+```{r}
+str(listExample)
+listExample[[2]][[1]][[1]][[2]]
+```
+
+
+```{r}
+today <- list(
+  list("台北市",highest_temp=c(highest_temp = 25),
+                lowest_temp=c(lowest_temp = 18)),
+  list("新北市",highest_temp=c(highest_temp = 24),lowest_temp=c(lowest_temp = 15)))
+tomorrow <- list(
+  list("台北市",highest_temp =c(highest_temp = 25),lowest_temp=c(lowest_temp = 18)),
+  list("新北市",highest_temp =c(highest_temp = 24),lowest_temp=c(lowest_temp = 15)))
+
+weather <- list(today,tomorrow)
+
+str(weather)
+
+```
+
+```{r}
+weather[[1]][[2]]$highest_temp # 今天/新北市/highest_temp
+weather[[2]][[2]]$highest_temp # 明天/新北市/highest_temp
+
+```
+
+
+```{r}
+a <- c("1","b","TRUE")
+a
+a[[2]] <- "c" # 元素存在: 替換
+a[[4]] <- "7" # 元素不存在： 增加
+a[c(5,6)] <- c("J", "K")
+a
+a[[7]]="Johnson"
+a=c(a,"Mary")
+a
+```
+
+
+```{r}
+library(lubridate)
+list1 <- 
+  list(
+    list(
+      name="Jack",
+      birthday=ymd("1998-03-21"),
+      status=c(height=177, weight=80)
+    )
+  )
+
+str(list1)
+list1[[1]][[2]]=ymd("1997-03-21")
+
+list1[[2]]=list(name="Mary",
+              birthday=ymd("1998-08-24")
+              )
+str(list1)
+
+```
+
+
+```{r}
+list1[[1]][["age"]] <- 21
+list1[[2]]["age"] <- list(21)
+
+# 改變「一個」時，使用[[ ]]比較不會錯。
+str(list1)
+
+
+```
+
+```{r}
+list1[[1]][c("bloodType","registered")] <- list("AB",TRUE)
+
+str(list1)
+
+
+```
+
+```{r}
+a
+a[-c(1,3)]
+
+```
+
+```{r}
+str(list1)
+list1[[1]]=list1[[1]][-3]
+list1
+```
+
+```{r}
+str(list1)
+list1[[2]][c(1,2)]=NULL
+list1
+
+
+```
+
+
+```{r}
+a <- c(2, 3, 5)
+b <- c(4,-1, 3)
+
+
+a+b
+a-b
+a*b
+a/b
+
+a %% b
+# 相當於
+c(2%%4, 3%%(-1), 5%%3)
+
+a ** b
+
+5*c(1,3,4)+7
+# 其實是
+c(5)*c(1,3,4)+c(7)
+
+## 對向量5，向量7進行recycle:
+c(5,5,5)*c(1,3,4)+c(7,7,7)
+## Recycle等長後才進行elementwise operation:
+c(5*1+7, 5*3+7, 5*4+7)
+```
+
+```{r}
+# 狀況一: 堆疊一定倍數剛好一樣長
+c(2,3)/c(-2,-13,10,22)
+c(2,3,2,3)/c(-2,-13,10,22)
+
+```
+
+```{r}
+# 狀況二: 倍數堆疊一定會超過，只好截斷
+c(2,3)/c(-2,-13,10)
+c(2,3,2)/c(-2,-13,10)
+
+```
+
+```{r}
+example <- list(
+  name=c("小明","小花","小新","美美"),
+  height=c(175,166,170,160),
+  weight=c(77,NA,60,43),
+  birthday=lubridate::ymd(c("1998-03-11","1999-12-22","1995-08-22","2001-10-10")),
+  hobby=c("美食 旅遊","旅遊 時尚","3C 美食","音樂 旅遊"),
+  residence=c("Taipei","New Taipei","Taichung","Kaohsiung"),
+  allowance=factor(c("0-1000","1001-2000","2000+","1001-2000")),
+  bloodType=c("A","B","B","O")
+)
+```
+
+```{r}
+example$name[c(T, F, T, F)]
+
+
+str(example[c("name","height")])
+
+
+pick_above170 <- example$height >= 170
+example$height
+c(175, 166, 170, 160) >= 170
+
+example$name[pick_above170]
+
+```
+
+```{r}
+source("https://www.dropbox.com/s/qsrw069n94k61lj/transcript100to103_list.R?dl=1")
+str(transcript100to103)
+# 各學屆2年級人數
+table(transcript100to103$學屆)
+
+# 只要成績大於85的
+pick_above85 <-
+  transcript100to103$`成績` > 85
+
+# 各學屆2年級成績大於85年數
+table(transcript100to103$學屆[pick_above85])
+
+```
+
+
+```{r}
+example$birthday
+class(example$birthday)
+typeof(example$birthday)
+
+
+
+print(example[c("name","birthday")])
+
+pick_after98 <- example$birthday >= lubridate::ymd("1998-01-01")
+example$name[pick_after98]
+```
+
+```{r}
+source("https://www.dropbox.com/s/16h6ggua6qtydci/exchangeRate.R?dl=1")
+str(exchangeRate)
+
+# 只要1998年1月（含）以後的
+library(lubridate)
+pick_after98_01 <-
+  exchangeRate$期間 >= ymd("1998-01-01")
+
+exchangeRate_after98 <-
+  list(
+    `期間`=exchangeRate$`期間`[pick_after98_01],
+    `幣別`=exchangeRate$`幣別`[pick_after98_01],
+    `匯率`=exchangeRate$`匯率`[pick_after98_01]
+    
+  )
+
+
+```
+
+```{r}
+print(example[c("name","allowance")])
+
+
+example$allowance<-ordered(example$allowance)
+
+pick_allowanceOver1000 <- example$allowance >= "1001-2000"
+example$name[pick_allowanceOver1000]
+
+```
+
+```{r}
+example$allowance=
+  factor(c("0-1000","1001-2000","2000+"),
+         levels=c("0-1000","1001-2000","2000+"),
+         ordered=T)#設定為可排序
+
+
+```
+
+```{r}
+print(example[c("name","bloodType")])
+
+pick_bloodB <- example$bloodType == "B"
+example$name[pick_bloodB]
+
+```
+
+```{r}
+sequenceNums <- c(11, 6, 8, 11, 12, 11, 3, 7, 10, 8)
+
+pick_evens <- (sequenceNums %% 2) == 0
+sequenceNums[pick_evens]
+
+```
+```{r}
+x <- c(1,5,8)
+y <- c(5,8)
+
+# x裡的元素值是不是屬於y集合
+x %in% y
+
+```
+
+```{r}
+print(example[c("name","residence")])
+
+set_TaipeiMetro <- c("Taipei","New Taipei")
+pick_fromTaipeiMetro <- example$residence %in% set_TaipeiMetro
+example$name[pick_fromTaipeiMetro]
+
+```
+
+```{r}
+str(transcript100to103)
+set_LAWBusiness=c("法學院","商學院" )
+pick_LAWBuisiness=transcript100to103$學院%in%set_LAWBusiness
+table(pick_LAWBuisiness)
+```
+
+```{r}
+levels(factor(transcript100to103$學院))
+
+unique(transcript100to103$學院)
+```
+
+```{r}
+pick_not_fromTaipeiMetro=!pick_fromTaipeiMetro
+pick_not_fromTaipeiMetro
+```
+
+```{r}
+x2 <- c(1,NA,10)
+y2 <- c(-1,NA,20)
+
+x3 <- c(NA,"小花")
+y3 <- c(NA,"小華")
+
+is.na(x2)
+```
+
+```{r}
+print(example[c("name","weight")])
+
+pick_na <- is.na(example$weight)
+example$name[pick_na]
+
+```
+
+```{r}
+print(example[c("name","hobby")])
+
+pick_loveFood <- stringr::str_detect(example$hobby,"美食")
+example$name[pick_loveFood]
+```
+
+```{r}
+jsonlite::fromJSON("https://data.ntpc.gov.tw/od/data/api/EDC3AD26-8AE7-4916-A00B-BC6048D19BF8?$format=json") ->
+  garbageRoutes
+garbageRoutes$linename=factor(garbageRoutes$linename)
+levels(garbageRoutes$linename)
+library(stringr)
+str_detect(garbageRoutes$linename,"下午")
+```
+
+```{r}
+fruit <- c("apple", "banana", "pear", "pinapple")
+str_detect(fruit, "a")
+str_detect(fruit, "^a") #a開頭
+str_detect(fruit, "a$") #a結尾
+str_detect(fruit, "b")
+str_detect(fruit, "[aeiou]")
+
+# Also vectorised over pattern
+str_detect("aecfg", letters)
+
+# Returns TRUE if the pattern do NOT match
+str_detect(fruit, "^p", negate = TRUE) #negate=TRUE->反向的意思
+
+```
+
+```{r}
+str(example)
+pick_above170 <- example$height >= 170
+pick_bloodB <- example$bloodType == "B"
+pick_loveFood <- 
+  stringr::str_detect(example$hobby,"美食")
+pick_na <- is.na(example$weight)
+pick_after98 <- 
+  example$birthday >= lubridate::ymd("1998-01-01")
+set_TaipeiMetro <- c("Taipei","New Taipei")
+pick_fromTaipeiMetro <- 
+  example$residence %in% set_TaipeiMetro
+
+```
+
+```{r}
+str(example[c("name","hobby","bloodType")])
+
+example$name[
+    pick_loveFood & pick_bloodB
+  ]
+
+```
+
+```{r}
+example[c("name","birthday","residence")]
+
+example$name[
+  pick_after98 | !pick_fromTaipeiMetro
+]
+
+```
+
+```{r}
+example[c("name","residence","bloodtype")]
+example$name[pick_after98 & pick_fromTaipeiMetro & pick_bloodB]
+```
+
+```{r}
+library(glue)
+str_sub("410773002",5,6)
+```
+```{r}
+str_extract_all(
+  c("民國108年12月5日","民國98年10月5日"),
+  "(?<=民國)[0-9]{2,3}(?=年)"
+) # 回傳list 
+
+str_extract(
+  c("民國108年12月5日","民國98年10月5日"),
+  "(?<=民國)[0-9]{2,3}(?=年)"
+) # 回傳vector 
+
+```
+
+```{r}
+heartSutra <- c("舍利子，色不異空，空不異色；色即是空，空即是色。")
+str_view_all(heartSutra,"色") # 檢視
+str_count(heartSutra,"色") # 計數
+```
+
+```{r}
+studentIds <- c("410873029","410773005","410772035","410562123")
+# 取出學號中的入學屆為107或108
+str_view_all(studentIds,"(107|108)")
+
+str_view_all(studentIds, "107|108") # 可不寫()
+
+# 是否來自107或108學屆
+str_detect(studentIds, "107|108")
+
+```
+
+```{r}
+Ids <- c("A283743192","B829103720","A10920402","C291022384")
+
+str_view_all(Ids, "[AC]")
+str_detect(Ids, "[AC]") # 偵測 出現A、C
+
+str_extract(Ids,"[A-Z]") # 取出 A-Z的字元
+
+```
+
+```{r}
+strip1 <- "[0-9]"
+strip2 <- "(櫻桃|777|紅心)" # 字群組合strip因為等下放中間所以用()括起來
+strip3 <- "[A-Z]"
+myRegexSlotMachine <- paste0(strip1,strip2,strip3)
+print(myRegexSlotMachine)
+
+```
+
+```{r}
+claimA <- "我得到A檸檬99"
+claimB <- "我的是7777Z"
+claimC <- "我玩了兩次，一次是7蘋果H，另一次是5紅心J"
+# 顯示吻合的出象
+str_view(
+  c(claimA,claimB,claimC),
+  pattern=myRegexSlotMachine
+)
+# 是否有吻合的出象
+str_detect(
+  c(claimA,claimB,claimC),
+  pattern=myRegexSlotMachine
+)
+```
+
+```{r}
+headline <- "資科系的謝陳官乃飛鳶書院三大名師，其中謝無雙的策略運算，陳大器的數理資科學，及官求敗的運算成本更是打通演算思維任督二脈的三大好課。書院目前有陳一、陳二、陳三四這三名學生。"
+
+# 顯示所有符合規則的
+str_view_all(headline, "謝陳官") # 固定字組
+str_count(headline,"謝陳官")
+
+str_view_all(headline, "[謝陳官]") # 有1個strip: 出象有3個可能字元 
+str_count(headline, "[謝陳官]")
+
+str_view_all(headline, "謝無雙|官求敗") # 有1個strip，出象有2個字組 
+str_count(headline, "謝無雙|官求敗")
+
+str_view_all(headline, "陳[^官]") # 固定字元＋有1個strip： 出象為排官的字元
+str_count(headline, "陳[^官]")
+```
+
+```{r}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓'
+  )
+strip1=strip2=strip3="[0-9]"
+strip4="號"
+mmm=paste0(strip1,strip2,strip3,strip4)
+print(mmm)
+str_extract(addresses,mmm)
+
+
+```
+
+```{r}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓',
+  '新竹市北區竹光路99號',
+  '金門縣金城鎮賢庵里山前33號',
+  '臺中市南屯區工業區二十四路23號1樓')
+
+myRegexSlotMachine <- "[0-9]+號" #一條以上
+print(myRegexSlotMachine)
+str_view_all(addresses,myRegexSlotMachine)
+str_extract(addresses,myRegexSlotMachine)
+
+str_view_all(addresses,"[0-9]+") # 樓號也會選到
+```
+
+
+```{r}
+phrase <- c("唧唧复唧唧")
+# 目標是前面的唧唧
+target_regex <- "唧唧"
+pattern <- glue::glue("^{target_regex}")
+print(pattern)
+str_view(phrase, pattern) 
+
+```
+
+```{r}
+# 目標是後面的唧唧
+target_regex2 <- "唧唧"
+pattern <- glue::glue("{target_regex2}$")
+print(pattern)
+str_view(phrase, pattern) 
+
+```
+
+```{r}
+twDate <-  c("民國108年12月5日","民國98年10月5日")
+
+library(stringr)
+# 準備regex: 
+## 取出：「前有」民國，「後有」年的「數字」「們」
+## "(?<={A_regex}){target_regex}(?={B_regex})"
+
+target_regex <- "[0-9]+"
+A_regex <- "民國"
+B_regex <- "年"
+
+regex_pattern <- glue::glue(
+  "(?<={A_regex}){target_regex}(?={B_regex})"
+  )
+
+print(regex_pattern)
+
+## 如果同學已經很熟就可以直接寫
+regex_pattern <-
+  "(?<=民國)[0-9]+(?=年)"
+
+# 取出民國年，計算西元年
+year <- 
+  str_extract(
+    twDate,
+    regex_pattern)
+year
+westernYear <- as.integer(year)+1911
+
+# 替換民國xx年的xx成西元年數字
+str_replace(
+  twDate,
+  regex_pattern,  # 要換掉的文字
+  as.character(westernYear) # 要替換的內容
+) -> twDate_reformat
+print(twDate_reformat)
+
+
+lubridate::ymd(twDate_reformat)
+
+```
+
+```{r}
+addresses <- c(
+  '臺中市后里區公館里尾社路385號',
+  '新竹市東區科學園路125號1樓'
+  )
+str_extract(addresses,"[0-9]+(?=號)")
+
+
+```
+
+```{r}
+str_extract_all(
+  "我的名字8293叫17380小abce明",
+  "[\u4E00-\u9FFF]+")
+
+```
+
+
+```{r}
+char1 <- c("Wild","Apple","Donald","May","Avocada") 
+factor1 <- factor(char1)
+levels(factor1)
+
+```
+
+```{r}
+char2 <- c("蔡英文","習近平","Donald Trump","蔡頭") 
+factor2 <- factor(char2)
+levels(factor2)
+
+sort(
+  str_sub(char2,1,1)
+)
+sort(
+  str_sub(char2,2,2)
+)
+
+```
+
+```{r}
+jsonlite::fromJSON("https://od.cdc.gov.tw/eic/Day_Confirmation_Age_County_Gender_19CoV.json") -> covid19
+# 不可排序類別：性別、縣市、是否境外移入
+covid19$縣市 <- 
+  factor(covid19$縣市)
+covid19$性別 <-
+  factor(covid19$性別)
+covid19$是否為境外移入 <-
+  factor(
+    covid19$是否為境外移入
+  )
+
+
+# 可排序類別資料：年齡層
+covid19$年齡層 <-
+  factor(
+    covid19$年齡層,
+    ordered=TRUE)
+```
+
+```{r}
+covid19$性別
+levels(covid19$性別)
+covid19$性別 <- factor(covid19$性別, c("男","女"))
+
+```
+
+```{r}
+jsonlite::fromJSON(
+  "https://www.dropbox.com/s/jckqryeh5zeat5w/regionPopulation.json?dl=1"
+) -> population
+unlist(population)->population
+print(population)
+class(population) # 判斷出是named integer vector
+names(population) # 元素名稱是台灣各縣市
+
+```
+
+```{r}
+levels(covid19$縣市) # 是名稱字串向量
+
+# 由於population元素值有names，可以用`[名稱字串向量]`取出所要的
+levels(covid19$縣市) -> levelsInData
+population[levelsInData] -> population
+population
+```
+
+```{r}
+population <- sort(population, decreasing=T)
+population
+```
+
+```{r}
+newLevels <- names(population)
+newLevels
+```
+
+```{r}
+covid19$縣市 <-
+  factor(
+    covid19$縣市, levels=newLevels
+  )
+
+levels(covid19$縣市)
+```
+
+```{r}
+levels(covid19$年齡層)->level_names
+str_extract_all(level_names,"^[0-9]+")->startingAges
+
+```
+
+```{r}
+# 要numerical class排的才一定對
+startingAges <- as.integer(startingAges)
+names(startingAges) <- level_names
+startingAges
+```
+
+```{r}
+sort(startingAges)->startingAges
+
+covid19$年齡層 <- 
+  factor(
+    covid19$年齡層, names(startingAges)
+  )
+levels(covid19$年齡層)
+```
+
+```{r}
+factor1 <- factor(
+  c("A","A","C","A","D","F","D","D")
+)
+factor1
+
+levels(factor1) <- c("優","佳","尚可","普")
+
+factor1
+```
+
+```{r}
+levels(factor1)[[1]] <- "Excellent"
+levels(factor1)[c(3,4)] <- c("C","D")
+factor1
+```
+
+```{r}
+factor1 <- factor(c("新北市","台北市","台中市","彰化市","基隆市","苗栗縣","苗栗縣"))
+levels(factor1)
+levels(factor1) <- c("中部","北部","北部","中部","北部","中部")
+factor1
+```
+
+```{r}
+factor1 <- factor(c("0-4歲","5-9歲","10歲以上","0-4歲","5-9歲","5-9歲","10歲以上"))
+factor1
+levels(factor1) <- c("0-9歲","10歲以上","0-9歲")
+factor1
+```
+
+```{r}
+covid19$地區 <- covid19$縣市
+levels(covid19$地區)
+currentLevels <- levels(covid19$地區)
+
+# 整併
+north_regex <- "宜蘭縣|基隆市|[台臺]北市|新北市|桃園市|新竹市|新竹縣"
+middle_regex <- "苗栗縣|[台臺]中市|彰化縣|南投縣|雲林縣"
+south_regex <-
+  "嘉義市|嘉義縣|[台臺]南[縣市]|高雄市|屏東縣|澎湖縣"
+east_regex <- "花蓮縣|台東縣"
+
+currentLevels <- str_replace(currentLevels, 
+            north_regex, "北部")
+currentLevels <- str_replace(currentLevels, 
+            middle_regex, "中部")
+currentLevels <- str_replace(currentLevels, 
+            south_regex, "南部")
+newLevels <- str_replace(currentLevels, 
+            east_regex, "東部")
+
+
+levels(covid19$地區) <- newLevels
+covid19$地區
+```
+
+```{r}
+levels(covid19$年齡層)
+
+# 創造10歲間距的所有可能
+start <- seq(5, 55, by=10) # 由5到55，每個值差10的數值向量
+end <- seq(14, 64, by=10)
+middleLevels <- 
+  rep(
+    paste0(start,"-",end), 
+    each=2) # 每個新間距要2個
+middleLevels
+newLevels <- c("4", middleLevels, "65+", "65+")
+newLevels
+levels(covid19$年齡層) <- newLevels
+covid19$年齡層
+levels(covid19$年齡層)
+```
+
+```{r}
+factor2 <- 
+  factor(c("好","好","普通","普通", "好"))
+levels(factor2)
+
+```
+
+```{r}
+factor2[[6]] <- "差"
+factor2 # 元素6變NA
+
+```
+
+```{r}
+factor2 <- 
+  factor(c("好","好","普通","普通", "好"))
+levels(factor2)
+
+# 先擴大levels
+levels(factor2) <- c(levels(factor2), "差")
+levels(factor2)
+factor2[[6]] <- "差"
+factor2
+
+```
+
+```{r}
+factor2[[7]]<-"尚可"
+levels(factor2)<-c(levels(factor2),"尚可")
+levels(factor2)
+factor2[[7]]<-"尚可"
+factor2
+```
+
+```{r}
+# non factor
+char1 <- c("小明","小美")
+char2 <- c("大雄","技安")
+c(char1, char2)
+
+# factor
+factor1 <- factor(c("好", "壞", "壞"))
+factor2 <- factor(c("壞", "好", "好"))
+c(factor1, factor2)
+
+```
+
+```{r}
+factor1[4:6] <- factor2
+factor1
+
+```
+
+```{r}
+install.packages("forcats")
+forcats::fct_c(factor1, factor2)
+```
+
+```{r}
+library(purrr)
+example <- list(
+  name=c("小明","小花","小新","美美"),
+  height=c(175,166,170,160),
+  weight=c(77,NA,60,43),
+  birthday=lubridate::ymd(c("1998-03-11","1999-12-22","1995-08-22","2001-10-10")),
+  hobby=c("美食 旅遊","旅遊 時尚","3C 美食","音樂 旅遊"),
+  residence=c("Taipei","New Taipei","Taichung","Kaohsiung"),
+  allowance=factor(c("0-1000","1001-2000","2000+","1001-2000")),
+  bloodType=c("A","B","B","O")
+)
+
+```
+
+```{r}
+pick_小新 <- example$name == "小新"
+data_selected <- 
+  list(
+    name=example$name[pick_小新],
+    weight=example$weight[pick_小新],
+    height=example$height[pick_小新],
+    hobby=example$hobby[pick_小新],
+    residence=example$residence[pick_小新],
+    allowance=example$allowance[pick_小新],
+    bloodType=example$bloodType[pick_小新]
+  )
+```
+
+```{r}
+map(example, ~.x[pick_小新]) -> 
+  data_selected 
+  
+data_selected
+
+```
+
+```{r}
+jsonlite::fromJSON("https://www.dropbox.com/s/6252gbdnv9owljm/dance.json?dl=1", simplifyDataFrame = F) -> dance
+```
+
+```{r}
+# 第一個dance表演名稱
+dance[[1]]$title
+# 第二個dance表演名稱
+dance[[2]]$title
+
+map(dance,~.x$title)
+```
+
+```{r}
+# 記載第一個表演的所有場次訊息
+dance[[1]]$showInfo
+str(dance[[1]]$showInfo)
+# 計算第一個表演有幾個場次
+length(dance[[1]]$showInfo)
+# 計算第二個表演有幾個場次
+length(dance[[2]]$showInfo)
+```
+
+```{r}
+map(dance,~length(.x$showInfo))->list_number0fShows
+list_number0fShows
+
+```
+
+```{r}
+str(dance[[4]]$showInfo)
+map(dance[[4]]$showInfo,~.x$time)
+```
+
+
+
+
